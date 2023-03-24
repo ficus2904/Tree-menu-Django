@@ -1,29 +1,33 @@
+# Custom Django Template Tag for Generating a Tree Menu
 This is a custom Django template tag that generates a tree menu using the Menu model from your Django app.
 
-Usage
-Add the draw_menu function to your app's templatetags directory, in a file called menu_tags.py.
+## Usage
+1. Add the `draw_menu` function to your app's `templatetags` directory, in a file called `menu_tags.py`.
 
-In any Django template where you want to use the tree menu, include the following at the top of the file:
+2. In any Django template where you want to use the tree menu, include the following at the top of the file:
 
-django
-Copy code
+```django
 {% load menu_tags %}
-To generate the tree menu in the template, use the draw_menu template tag as follows:
+```
 
-django
-Copy code
+3. To generate the tree menu in the template, use the `draw_menu` template tag as follows:
+
+```django
 {% draw_menu table_name %}
-Where table_name is the name of the table in the Menu model that you want to use to generate the tree menu.
+```
 
-By default, the draw_menu template tag will generate a menu with a depth of 1 (i.e., only the top-level menu items). You can also specify a different depth by passing the level parameter:
+Where `table_name` is the name of the table in the Menu model that you want to use to generate the tree menu.
 
-django
-Copy code
+By default, the `draw_menu` template tag will generate a menu with a depth of 1 (i.e., only the top-level menu items). You can also specify a different depth by passing the `level` parameter:
+
+```django
 {% draw_menu table_name level=2 %}
+```
+
 This will generate a menu with a depth of 2 (i.e., top-level and second-level menu items).
 
-Logic
-The draw_menu function takes a list of menu items, a current URL, a level (default=1), and a parent item (default=None), and returns a recursive HTML unordered list representing a tree menu.
+## Logic
+The `draw_menu` function takes a list of menu items, a current URL, a level (default=1), and a parent item (default=None), and returns a recursive HTML unordered list representing a tree menu.
 
 The function first gets the Menu model using the name of the table. If this is the first level of the menu, it gets the root menu items (i.e., items with a parent of '/'). It then loops through each menu item and generates the HTML for that item.
 
